@@ -13,7 +13,7 @@
 
 
 
-<title>【代码随想录】 Day1 | 704.二分查找 27.移除元素 | Hexo</title>
+<title>【代码随想录】 Day2 | 977.有序数组的平方 209.长度最小的子数组 59.螺旋矩阵Ⅱ | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">【代码随想录】 Day1 | 704.二分查找 27.移除元素</h1>
+            <h1 class="post-title">【代码随想录】 Day2 | 977.有序数组的平方 209.长度最小的子数组 59.螺旋矩阵Ⅱ</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">August 9, 2023&nbsp;&nbsp;22:08:30</a>
+                        Date: <a href="#">August 10, 2023&nbsp;&nbsp;23:49:46</a>
                         </span>
                     
                     
@@ -214,42 +214,41 @@
         </header>
 
         <div class="post-content">
-            <h2 id="数组理论基础"><a href="#数组理论基础" class="headerlink" title="数组理论基础"></a>数组理论基础</h2><blockquote>
-<p><em>数组定义：存放在连续内存空间上的相同类型数据的集合。</em></p>
-</blockquote>
+            <h2 id="今日题目"><a href="#今日题目" class="headerlink" title="今日题目"></a>今日题目</h2><ul>
+<li><h5 id="Leetcode-977-有序数组的平方"><a href="#Leetcode-977-有序数组的平方" class="headerlink" title="Leetcode: 977.有序数组的平方"></a>Leetcode: 977.有序数组的平方</h5></li>
+</ul>
+<p><img src="/2023/08/10/day2/lc0977_tit.png" alt="lc0977_tit"></p>
+<h6 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h6><ol>
+<li>本题描述中，可将数组元素视为单调递增；</li>
+<li>若所有元素符号相同，则平方后得到的数组仍具单调性；</li>
+<li>若元素同时存在正、负数，直接平方后数据分布满足开口向上的一元二次方程图像，即<strong>两端数据最大</strong>；</li>
+<li>题目未限制空间。</li>
+</ol>
+<p>综上所述，可额外用一个数组arr存放平方后的元素。使用双指针法，分别指向平方后元素的首尾，比较二者对应数据的大小，数组较大者从arr末尾依次进行存放，直至两指针相遇。</p>
+<p><img src="/2023/08/10/day2/lc0977ans1.png" alt="lc0977ans1"></p>
 <ul>
-<li><strong>今日涉及知识点：</strong></li>
+<li><h5 id="Leetcode-209-长度最小的子数组"><a href="#Leetcode-209-长度最小的子数组" class="headerlink" title="Leetcode: 209.长度最小的子数组"></a>Leetcode: 209.长度最小的子数组</h5></li>
 </ul>
-<p>数组中的元素在内存地址上连续，无法单独删除数组中的某个元素，仅能覆盖。</p>
-<h2 id="今日题目"><a href="#今日题目" class="headerlink" title="今日题目"></a>今日题目</h2><ul>
-<li><h5 id="LeetCode：-704-二分查找"><a href="#LeetCode：-704-二分查找" class="headerlink" title="LeetCode： 704.二分查找"></a>LeetCode： 704.二分查找</h5></li>
-</ul>
-<p><img src="/2023/08/09/day1/lc0704_tit.jpeg" alt="lc0704_tit"></p>
-<p>二分查找应用前提条件：数组有序且无重复元素。</p>
-<h6 id="二分法区间"><a href="#二分法区间" class="headerlink" title="二分法区间"></a>二分法区间</h6><blockquote>
-<p>[left, right]</p>
-</blockquote>
-<p><img src="/2023/08/09/day1/lc0027ans1.png" alt="lc0027ans1"></p>
+<p><img src="/2023/08/10/day2/lc0209_tit.png" alt="lc0209_tit"></p>
+<h5 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h5><p>因为是连续子数组，故很容易想到暴力解法：使用两次for循环，找寻满足要求的全部子数据，再分析最小长度。但时间不满足性能要求；</p>
+<p><img src="/2023/08/10/day2/lc0209res.png" alt="lc0209res"></p>
 <blockquote>
-<p>[left, right)</p>
+<p>滑动窗口</p>
 </blockquote>
-<p><img src="/2023/08/09/day1/lc0704ans2.png" alt="lc0704ans2"></p>
-<p><em>Note: 需注意求中值时不要将两个int类型值直接相加，否则可能造成数据溢出</em></p>
+<p>仍使用两个指针，由数组起始位开始，移动窗口的终止位置，当窗口内元素满足要求时依次移动窗口起始位置，最终在一次for循环中即可找到全部满足要求的子数组。</p>
+<p><img src="/2023/08/10/day2/lc0209ans1.png" alt="lc0209ans1"></p>
 <ul>
-<li><h5 id="LeetCode：-27-移除元素"><a href="#LeetCode：-27-移除元素" class="headerlink" title="LeetCode： 27.移除元素"></a>LeetCode： 27.移除元素</h5></li>
+<li><h5 id="Leetcode-59-螺旋矩阵Ⅱ"><a href="#Leetcode-59-螺旋矩阵Ⅱ" class="headerlink" title="Leetcode: 59.螺旋矩阵Ⅱ"></a>Leetcode: 59.螺旋矩阵Ⅱ</h5></li>
 </ul>
-<p><img src="/2023/08/09/day1/lc0027_tit.png" alt="lc0027_tit"></p>
-<p>无法单独删除数组中的某个元素，仅能覆盖</p>
-<blockquote>
-<p>暴力解法</p>
-</blockquote>
-<p>两次for循环，首次循环遍历数组，第二次循环移除目标元素。</p>
-<blockquote>
-<p>双指针法</p>
-</blockquote>
-<p>使用快慢指针，在一次for循环中，快指针处的数据非目标元素时更新慢指针，最终可求得移除目标元素后的数组长度。</p>
-<p><img src="/2023/08/09/day1/lc0027ans1.png" alt="lc0027ans1"></p>
-<h2 id="扩展题"><a href="#扩展题" class="headerlink" title="扩展题"></a>扩展题</h2><h6 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h6>
+<p><img src="/2023/08/10/day2/lc0059_tit.png" alt="lc0059_tit"></p>
+<h6 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h6><p>本题可视作不涉及算法的模拟题，需考虑并认识到如下特性：</p>
+<ol>
+<li>要求输出正方形矩阵，长与宽（后文统一使用x,y代替）相等，实际顺时针排序时x，y仅一个坐标变动；</li>
+<li>每围成一圈，内圈相对外圈x,y均减去两条边的长度，故需考虑给定整数n的奇偶性。n为奇数时，（n&#x2F;2, n&#x2F;2）坐标的元素为n²。n为偶数则无需考虑；</li>
+<li>边界条件应保持一致，推荐左闭右开，到达临界值时x,y改变静止与运动状态。</li>
+</ol>
+<p><img src="/2023/08/10/day2/lc0059ans1.png" alt="lc0059ans1"></p>
+
         </div>
 
         
@@ -263,7 +262,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2023/08/09/day1/">http://example.com/2023/08/09/day1/</a></span>
+                        <span><a href="http://example.com/2023/08/10/day2/">http://example.com/2023/08/10/day2/</a></span>
                     </p>
                 
                 
@@ -287,9 +286,11 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/"># 二分查找</a>
-                    
                         <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"># 双指针法</a>
+                    
+                        <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"># 滑动窗口</a>
+                    
+                        <a href="/tags/%E6%A8%A1%E6%8B%9F%E9%A2%98/"># 模拟题</a>
                     
                         
                 </span>
@@ -302,10 +303,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/08/10/day2/">【代码随想录】 Day2 | 977.有序数组的平方 209.长度最小的子数组 59.螺旋矩阵Ⅱ</a>
             
-            
-            <a class="next" rel="next" href="/2023/08/08/hello-world/">Hello World</a>
+            <a class="next" rel="next" href="/2023/08/09/day1/">【代码随想录】 Day1 | 704.二分查找 27.移除元素</a>
             
         </section>
 
