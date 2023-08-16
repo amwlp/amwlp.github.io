@@ -13,7 +13,7 @@
 
 
 
-<title>【代码随想录】 Day4 | 24. 两两交换链表中的节点 19.删除链表的倒数第N个节点 面试题 02.07. 链表相交 142.环形链表II | Hexo</title>
+<title>【代码随想录】 Day7 | 454.四数相加II  383. 赎金信 15. 三数之和 18. 四数之和 | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">【代码随想录】 Day4 | 24. 两两交换链表中的节点 19.删除链表的倒数第N个节点 面试题 02.07. 链表相交 142.环形链表II</h1>
+            <h1 class="post-title">【代码随想录】 Day7 | 454.四数相加II  383. 赎金信 15. 三数之和 18. 四数之和</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">August 13, 2023&nbsp;&nbsp;23:52:58</a>
+                        Date: <a href="#">August 17, 2023&nbsp;&nbsp;0:25:19</a>
                         </span>
                     
                     
@@ -215,35 +215,29 @@
 
         <div class="post-content">
             <h2 id="今日题目"><a href="#今日题目" class="headerlink" title="今日题目"></a>今日题目</h2><ul>
-<li><h5 id="24-两两交换链表中的节点"><a href="#24-两两交换链表中的节点" class="headerlink" title="24. 两两交换链表中的节点"></a><strong>24. 两两交换链表中的节点</strong></h5></li>
+<li><h5 id="454-四数相加II"><a href="#454-四数相加II" class="headerlink" title="454.四数相加II"></a>454.四数相加II</h5></li>
 </ul>
-<p><img src="/2023/08/13/day4/lc0024_tit.png" alt="lc0024_tit"></p>
-<h6 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h6><ol>
-<li>两两交换相邻节点，故需考虑节点数为奇为偶时的场景；</li>
-<li>需使用临时指针存储某些节点；</li>
-</ol>
-<p><img src="/2023/08/13/day4/lc0024ans.png" alt="lc0024ans"></p>
+<p><img src="/2023/08/17/day7/lc454_tit.png" alt="lc454_tit"></p>
+<h6 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h6><p>需找到4数相加等于0的场景，可视作两两成对的数组中有相反数</p>
+<p><img src="/2023/08/17/day7/lc454ans.png" alt="lc454ans"></p>
 <ul>
-<li><h6 id="19-删除链表的倒数第N个节点"><a href="#19-删除链表的倒数第N个节点" class="headerlink" title="19.删除链表的倒数第N个节点"></a><strong>19.删除链表的倒数第N个节点</strong></h6></li>
+<li><h5 id="383-赎金信"><a href="#383-赎金信" class="headerlink" title="383. 赎金信"></a>383. 赎金信</h5></li>
 </ul>
-<p><img src="/2023/08/13/day4/lc0019_tit.png" alt="lc0019_tit"></p>
-<h6 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h6><p>使用快指针指向链表倒数N-1位，慢指针指向头节点。快慢指针同时向后移动，当快指针为NULL时，将慢指针指向的下一个元素从链表移除即可。</p>
-<p><img src="/2023/08/13/day4/lc0019ans.png" alt="lc0019ans"></p>
+<p><img src="/2023/08/17/day7/lc383_tit.png" alt="lc383_tit"></p>
+<h6 id="分析：-1"><a href="#分析：-1" class="headerlink" title="分析："></a>分析：</h6><p>magazine中每个字符仅能在ransomNote中使用一次，可直接使用数组结构的哈希表，分别将二者元素出现的次数进行比较</p>
+<p><img src="/2023/08/17/day7/Blog\myBlog\source_posts\day7\lc383ans.png" alt="lc383ans"></p>
 <ul>
-<li><h5 id="面试题-02-07-链表相交"><a href="#面试题-02-07-链表相交" class="headerlink" title="面试题 02.07. 链表相交"></a><strong>面试题 02.07. 链表相交</strong></h5></li>
+<li><h5 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15. 三数之和"></a>15. 三数之和</h5></li>
 </ul>
-<p><img src="/2023/08/13/day4/ms02_07_tit.png" alt="ms02_07_tit"></p>
-<h6 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h6><p>交点不是数值相等，而是指针相等。</p>
-<p><img src="/2023/08/13/day4/ms02_07ans.png" alt="ms02_07ans"></p>
-<ul>
-<li><h5 id="142-环形链表II"><a href="#142-环形链表II" class="headerlink" title="142.环形链表II"></a><strong>142.环形链表II</strong></h5></li>
-</ul>
-<p><img src="/2023/08/13/day4/lc0142_tit.png" alt="lc0142_tit"></p>
-<h6 id="分析：-3"><a href="#分析：-3" class="headerlink" title="分析："></a>分析：</h6><ol>
-<li>判断是否有环：同从头节点出发的快慢指针是否可相遇；</li>
-<li>俩指针相交的处即为环的入口。</li>
-</ol>
-<p><img src="/2023/08/13/day4/lc0142ans.png" alt="lc0142ans"></p>
+<p><img src="/2023/08/17/day7/lc15_tit.png" alt="lc15_tit"></p>
+<blockquote>
+<p>双指针法：</p>
+</blockquote>
+<p>场景为三数之和为0，先将数组进行排序，定义变量i由数组首位开始遍历，并在i + 1位与数组末尾进行定义首尾指针，将三数之和与0进行比较</p>
+<p><img src="/2023/08/17/day7/lc15ans.png" alt="lc15ans"></p>
+<h5 id="18-四数之和"><a href="#18-四数之和" class="headerlink" title="18. 四数之和"></a>18. 四数之和</h5><p><img src="/2023/08/17/day7/lc18_tit.png" alt="lc18_tit"></p>
+<h6 id="分析：-2"><a href="#分析：-2" class="headerlink" title="分析："></a>分析：</h6><p>同上题《三数之和》，在此基础上进行一次for循环，但需注意返回条件</p>
+<p><img src="/2023/08/17/day7/lc18ans.png" alt="lc18ans"></p>
 
         </div>
 
@@ -258,7 +252,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2023/08/13/day4/">http://example.com/2023/08/13/day4/</a></span>
+                        <span><a href="http://example.com/2023/08/17/day7/">http://example.com/2023/08/17/day7/</a></span>
                     </p>
                 
                 
@@ -284,7 +278,7 @@
                     
                         <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95/"># 双指针法</a>
                     
-                        <a href="/tags/%E9%93%BE%E8%A1%A8/"># 链表</a>
+                        <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/"># 哈希表</a>
                     
                         
                 </span>
@@ -297,10 +291,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/08/14/day5/">day5</a>
+                <a class="prev" rel="prev" href="/2023/08/17/day8/">【代码随想录】 Day7 | 344.反转字符串  541. 反转字符串II 剑指Offer 05.替换空格 151.翻转字符串里的单词 剑指Offer58-II.左旋转字符串</a>
             
             
-            <a class="next" rel="next" href="/2023/08/11/day3/">【代码随想录】 Day3 | 203.移除链表元素 707.设计链表 206.反转链表</a>
+            <a class="next" rel="next" href="/2023/08/16/day6/">【代码随想录】 Day6 | 242.有效的字母异位词 349. 两个数组的交集 202. 快乐数 1. 两数之和</a>
             
         </section>
 
