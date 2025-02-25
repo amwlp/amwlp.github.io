@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ryen">
+
+
+
+
+
+<title>嵌入式八股_Linux | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ryen&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ryen&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">嵌入式八股_Linux</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Ryen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 25, 2025&nbsp;&nbsp;19:00:22</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Linux相关常见面试题"><a href="#Linux相关常见面试题" class="headerlink" title="Linux相关常见面试题"></a>Linux相关常见面试题</h1><h3 id="1-进程和线程的区别"><a href="#1-进程和线程的区别" class="headerlink" title="1.进程和线程的区别"></a>1.进程和线程的区别</h3><ol>
+<li><strong>定义：</strong><ul>
+<li>进程是操作系统中正在执行的一个程序实例，拥有独立的内存空间和资源，是调度和分配资源的基本单位。</li>
+<li>线程是进程中的一个执行单元，是<em><strong>调度的最小单位</strong></em>，共享进程的内存空间和资源。</li>
+</ul>
+</li>
+<li><strong>资源占用：</strong><ul>
+<li>每个进程都有独立的内存空间和系统资源，包括文件句柄、网络连接等，因此进程间的资源是相互独立的。</li>
+<li>线程属于同一进程，共享相同的内存空间和资源，可以直接访问进程的变量和状态。</li>
+</ul>
+</li>
+<li><strong>切换开销：</strong><ul>
+<li>由于进程拥有独立的内存空间和资源，切换进程需要保存和恢复大量的状态信息，包括内存映像、寄存器状态等，因此进程切换的开销相对较大。</li>
+<li>线程切换只需要保存和恢复少量的状态信息，如寄存器，所以线程切换的开销比进程小。</li>
+</ul>
+</li>
+<li><strong>并发性：</strong><ul>
+<li>进程间相互独立，不共享内存空间，因此进程之间可以实现真正的并发执行。</li>
+<li>线程共享相同的内存空间，需要互斥访问共享数据，因此线程的并发性相对较低。</li>
+</ul>
+</li>
+<li><strong>创建和销毁开销：</strong><ul>
+<li>创建进程需要分配独立的内存空间和资源，并进行初始化，因此进程的创建和销毁开销比较大。</li>
+<li>创建线程只需要为线程分配少量的内存空间，并进行初始化，因此线程的创建和销毁开销比较小。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-Linux常用指令"><a href="#2-Linux常用指令" class="headerlink" title="2.Linux常用指令"></a>2.Linux常用指令</h3><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th align="left">含义</th>
+<th>示例</th>
+<th align="left">示例含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>ls</strong></td>
+<td align="left">列出目录内容</td>
+<td>ls -l</td>
+<td align="left">以长格式显示目标内容</td>
+</tr>
+<tr>
+<td align="left"><strong>cd</strong></td>
+<td align="left">切换目录</td>
+<td>cd&#x2F;home</td>
+<td align="left">进入“&#x2F;home”目录</td>
+</tr>
+<tr>
+<td align="left"><strong>pwd</strong></td>
+<td align="left">显示当前工作目录的路径</td>
+<td></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><strong>mkdir</strong></td>
+<td align="left">创建新目录</td>
+<td>mkdir test</td>
+<td align="left">创建名为“test”的目录</td>
+</tr>
+<tr>
+<td align="left"><strong>rm</strong></td>
+<td align="left">删除文件或目录</td>
+<td>rm test.c</td>
+<td align="left">删除名为“test.c”的文件</td>
+</tr>
+<tr>
+<td align="left"><strong>cp</strong></td>
+<td align="left">复制文件或目录</td>
+<td>cp file1.txt file2.txt</td>
+<td align="left">将“file1.txt”复制为“file2.txt”</td>
+</tr>
+<tr>
+<td align="left"><strong>mv</strong></td>
+<td align="left">移动文件或目录，或修改文件或目录名称</td>
+<td>mv  file1.txt newdir</td>
+<td align="left">将“file1.txt”移动至“newdir”文件夹</td>
+</tr>
+<tr>
+<td align="left"><strong>touch</strong></td>
+<td align="left">创建空文件或修改文件的访问和修改时间戳</td>
+<td>touch file.txt</td>
+<td align="left">创建名为“file.txt ”的新文件</td>
+</tr>
+<tr>
+<td align="left"><strong>cat</strong></td>
+<td align="left">查看文件内容</td>
+<td>cat file.txt</td>
+<td align="left">查看“file.txt ”的内容</td>
+</tr>
+<tr>
+<td align="left"><strong>grep</strong></td>
+<td align="left">在文件中查找匹配的内容</td>
+<td>grep “test” file.txt</td>
+<td align="left">在“file.txt ”中查找匹配“test”的行</td>
+</tr>
+<tr>
+<td align="left"><strong>chmod</strong></td>
+<td align="left">修改文件或目录的权限</td>
+<td>chmod +x test.sh</td>
+<td align="left">将“test.sh”设置为可执行文件</td>
+</tr>
+<tr>
+<td align="left"><strong>chown</strong></td>
+<td align="left">修改文件或目录的所有者</td>
+<td>chown xry test.txt</td>
+<td align="left">将“test.txt”的所有者修改为“xry”</td>
+</tr>
+<tr>
+<td align="left"><strong>man</strong></td>
+<td align="left">查看指令的手册页</td>
+<td>man ls</td>
+<td align="left">查看“ls”指令的手册页</td>
+</tr>
+<tr>
+<td align="left"><strong>ps</strong></td>
+<td align="left">查看进程状态</td>
+<td>ps -ef</td>
+<td align="left">显示当前运行的所有进程</td>
+</tr>
+<tr>
+<td align="left"><strong>top</strong></td>
+<td align="left">实时显示系统的进程和资源使用情况</td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h3 id="3-gbd常见指令"><a href="#3-gbd常见指令" class="headerlink" title="3.gbd常见指令"></a>3.gbd常见指令</h3><table>
+<thead>
+<tr>
+<th align="left">指令</th>
+<th>含义</th>
+<th>示例</th>
+<th>示例含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>run</strong></td>
+<td>运行程序</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"><strong>break</strong></td>
+<td>设置断点</td>
+<td>break function_name</td>
+<td>在对应函数开始处设置断点</td>
+</tr>
+<tr>
+<td align="left"><strong>continue</strong></td>
+<td>继续执行程序，直至遇到下一个断点或程序结束</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"><strong>next</strong></td>
+<td>逐行执行程序，跨过函数调用</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"><strong>step</strong></td>
+<td>逐行执行程序，进入函数调用</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"><strong>backtrace</strong></td>
+<td>显示当前调用堆栈</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"><strong>print</strong></td>
+<td>打印变量的值</td>
+<td>print variable_name</td>
+<td>打印名为“variable_name”变量的值</td>
+</tr>
+<tr>
+<td align="left"><strong>watch</strong></td>
+<td>监视变量的变化</td>
+<td>watch variable_name</td>
+<td>监视名为“variable_name”变量的变化</td>
+</tr>
+<tr>
+<td align="left"><strong>info locals</strong></td>
+<td>显示当前函数的局部变量</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"><strong>info breakpoints</strong></td>
+<td>显示已设置的断点信息</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"><strong>delete</strong></td>
+<td>删除断点</td>
+<td>delete breakpoint_number</td>
+<td>删除指定编号的断点</td>
+</tr>
+<tr>
+<td align="left"><strong>stepi</strong></td>
+<td>逐指令执行程序</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"><strong>finish</strong></td>
+<td>执行程序，直到当前函数返回</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"><strong>list</strong></td>
+<td>显示源代码</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="left"><strong>set</strong></td>
+<td>修改变量的值</td>
+<td>set variable_name &#x3D; new_value</td>
+<td>将名为“variable_name”变量值修改为“new_value”</td>
+</tr>
+</tbody></table>
+<h3 id="4-TCP与UDP"><a href="#4-TCP与UDP" class="headerlink" title="4.TCP与UDP"></a>4.TCP与UDP</h3><ol>
+<li><strong>可靠性：</strong>TCP提供可靠的数据传输，而UDP则是无连接的不可靠协议。TCP通过确认、重传和拥塞控制等机制，确保数据的完整性和可靠性。UDP不提供这些机制，因此数据表可能丢失、乱序或重复传输。</li>
+<li><strong>连接性：</strong>TCP是面向连接的协议，需要在通信双方建立连接后才能进行数据传输。连接的建立和维护会带来一定的开销，但也能够确保数据的有序传输。UDP是无连接的协议，通信双方没有建立连接的过程，可以直接发送数据包。</li>
+<li><strong>数据流：</strong>TCP是面向字节流的协议，将数据视为连续的字节流进行传输。UDP是面向数据包的协议，将数据划分为数据包，每个包都有自己的独立标识。</li>
+<li><strong>效率：</strong>TCP有更优的可靠性和连接性保证，因此相对而言较为复杂。这使得TCP在网络拥塞或高延迟的情况下表现更好，但也更消耗系统资源。UDP较为简单，没有额外的开销，因此在实时应用（如视频流、实时游戏）等无需长时间连接和可靠性要求的场景更为适用。</li>
+<li><strong>应用场景：</strong>TCP常用于需要可靠传输和确保数据顺序的应用，如网页浏览、文件传输、电子邮件等。UDP常用于实时性要求较高、丢失少量数据包不会严重影响应用的场景，如音频&#x2F;视频流传输、实时通信等。</li>
+</ol>
+<h3 id="5-open函数"><a href="#5-open函数" class="headerlink" title="5.open函数"></a>5.open函数</h3><p>作用：打开文件并返回一个文件描述符</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">open</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *pathname, <span class="type">int</span> flags, <span class="type">mode_t</span> mode)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>参数：</p>
+<ol>
+<li><p>pathname ：要打开文件的路径名（字符串）。</p>
+</li>
+<li><p>flags:表示打开的模式和选项</p>
+<table>
+<thead>
+<tr>
+<th>标志</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>O_RDONLY</td>
+<td>只读模式打开文件</td>
+</tr>
+<tr>
+<td>O_WRONLY</td>
+<td>只写模式打开文件</td>
+</tr>
+<tr>
+<td>O_RDWR</td>
+<td>读写模式打开文件</td>
+</tr>
+<tr>
+<td>O_CREAT</td>
+<td>若文件不存在则创建文件</td>
+</tr>
+<tr>
+<td>O_APPEND</td>
+<td>在文件末尾追加数据</td>
+</tr>
+<tr>
+<td>O_TRUNC</td>
+<td>如果文件存在，在文件打开前清空文件内容</td>
+</tr>
+<tr>
+<td>O_EXCL</td>
+<td>与O_CREAT一起使用，确保创建新文件</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>mode:仅在使用O_CREAT有效，用于指定新创建文件的权限（权限模式）。可以使用chmod函数指定权限，通常使用八进制表示。</p>
+<ul>
+<li>mode_t，是一个u32无符号整型数据，只有低位12bit有效，毎组的3个bit内容为：r-可读	w-可写	x-可执行</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>bit11~9</th>
+<th>bit8~6</th>
+<th>bit5~3</th>
+<th>bit2~0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S</td>
+<td>U</td>
+<td>G</td>
+<td>O</td>
+</tr>
+<tr>
+<td>文件的特殊权限</td>
+<td>文件所属用户的权限</td>
+<td>同组用户的权限</td>
+<td>其他用户的权限</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> file;</span><br><span class="line">    <span class="type">char</span> *filename = <span class="string">&quot;test.txt&quot;</span>;</span><br><span class="line">    <span class="comment">// 使用O_CREAT和O_WRONLY标志创建并以只读模式打开文件</span></span><br><span class="line">    file = open(filename, O_CREAT | O_WRONLY, <span class="number">0644</span>);</span><br><span class="line">    <span class="keyword">if</span> (file == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;open&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 文件打开成功，可以继续进行读写操作或关闭文件</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;File opened success\n&quot;</span>);</span><br><span class="line">    <span class="comment">// 关闭文件</span></span><br><span class="line">    close(file);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-多线程的执行顺序"><a href="#6-多线程的执行顺序" class="headerlink" title="6.多线程的执行顺序"></a>6.多线程的执行顺序</h3><p>根据线程优先级、调度器算法、CPU负载情况综合决定。</p>
+<h3 id="7-Linux中线程的调度方式"><a href="#7-Linux中线程的调度方式" class="headerlink" title="7.Linux中线程的调度方式"></a>7.Linux中线程的调度方式</h3>
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Ryen</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2025/02/25/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-Linux/">http://example.com/2025/02/25/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-Linux/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span></span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E9%9A%8F%E7%AC%94/"># 随笔</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/02/24/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-C%E8%AF%AD%E8%A8%80/">嵌入式八股_C语言</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Ryen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
