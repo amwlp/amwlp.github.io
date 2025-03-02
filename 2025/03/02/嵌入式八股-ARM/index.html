@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ryen">
+
+
+
+
+
+<title>嵌入式八股_ARM | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ryen&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ryen&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">嵌入式八股_ARM</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Ryen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 2, 2025&nbsp;&nbsp;23:17:52</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="ARM基础相关面试题"><a href="#ARM基础相关面试题" class="headerlink" title="ARM基础相关面试题"></a>ARM基础相关面试题</h1><h3 id="1-什么是CPU的多级流水线"><a href="#1-什么是CPU的多级流水线" class="headerlink" title="1.什么是CPU的多级流水线"></a>1.什么是CPU的多级流水线</h3><p>CPU的多级流水线是一种提高处理器指令执行效率的技术。它将指令执行过程分解成多个阶段，每个阶段在流水线中都有独立的硬件资源。这些阶段可以并行处理不同的指令，从而提高指令执行的吞吐量。以下是多级流水线的基本概念和工作原理：</p>
+<p><strong>基本概念</strong></p>
+<ol>
+<li><strong>流水线（Pipeline）：</strong>流水线是一种将复杂的处理过程分解为多个简单阶段的技术。每个阶段都执行处理过程的一部分，多个阶段可以并行工作，从而提高整体处理速度。</li>
+<li><strong>多级流水线（Superscalar Pipeline）：</strong>多级流水线是将流水线的阶段进一步细分的技术。每个阶段被划分为多个子阶段，使得每个阶段可以同时处理多个指令。这种设计允许处理器在同一时刻执行更多的指令，进一步提升性能。</li>
+</ol>
+<p><strong>流水线阶段</strong></p>
+<p>一个典型的CPU流水线包含以下几个主要阶段：</p>
+<ol>
+<li><strong>取指阶段（Instruction Fetch，IF）：</strong>从内存中获取指令，并将其送到流水线的下一个阶段。</li>
+<li><strong>指令译码阶段（Instruction Decode，ID）：</strong>解码指令，确定操作数和操作类型，并准备好执行所需的资源。</li>
+<li><strong>执行阶段（Execution，EX）：</strong>执行指令操作，比如算术计算或逻辑运算。</li>
+<li><strong>访存阶段（Memory Access，MEM）：</strong>对内存进行读写操作，例如从数据存储器中读取数据或将数据写入内存。</li>
+<li><strong>写回阶段（Write Back，WB）：</strong>将计算结果写回到寄存器或内存中。</li>
+</ol>
+<p><strong>多级流水线的优点</strong></p>
+<ol>
+<li><strong>提高指令吞吐量：</strong>通过并行处理不同的指令阶段，多级流水线可以提高CPU的指令执行效率，从而提升系统的总体性能。</li>
+<li><strong>减少指令延迟：</strong>每个阶段的执行时间可以独立优化，使得整体的指令处理速度提高。</li>
+<li><strong>更高的并行度：</strong>多级流水线允许在同一时刻处理多个指令，进一步增加了处理器的并行度和吞吐量。</li>
+</ol>
+<h3 id="2-什么是中断"><a href="#2-什么是中断" class="headerlink" title="2.什么是中断"></a>2.什么是中断</h3><p>中断是一种由处理器或外围设备触发的机制，用于通知处理器发生了需要立即处理的事件。中断机制使得处理器能够在当前任务的执行过程中，及时响应其他事件或请求，从而提高系统的响应性和处理效率。</p>
+<h3 id="3-Flash擦除后内存中每一位是1还是0？Flash的最小写入单位是什么"><a href="#3-Flash擦除后内存中每一位是1还是0？Flash的最小写入单位是什么" class="headerlink" title="3.Flash擦除后内存中每一位是1还是0？Flash的最小写入单位是什么"></a>3.Flash擦除后内存中每一位是1还是0？Flash的最小写入单位是什么</h3><p>在Flash存储中，擦除和写入操作有一些特殊的特性。下面是关于Flash擦除后的状态以及最小写入单位的详细解释：</p>
+<p><strong>Flash擦除后的内存状态</strong></p>
+<ul>
+<li>擦除操作后的状态：在Flash存储器中，擦除操作会将整个擦除块的所有位设置为1。Flash存储的基本操作单位是擦除块（或称为擦除页），擦除操作将该块的所有字节都重置为1（通常是逻辑1）。因此，Flash擦除后的内存中的每一位都是1，而不是0。</li>
+</ul>
+<p><strong>Flash的最小写入单位</strong></p>
+<ul>
+<li>最小写入单位：Flash存储器的最小写入单位通常是“页”（Page）。这意味着Flash存储器不能单独写入一个字节或一个位，而是以一个页为单位进行写入操作。页的大小依赖于具体的Flash存储器技术，但通常在几百字节到几千字节之间。例如，在NAND Flash中，页大小可能是2KB或4KB。</li>
+</ul>
+<p><strong>总结</strong></p>
+<ul>
+<li><strong>擦除后的状态：</strong>Flash擦除操作将擦除块中的所有位都设置为1。</li>
+<li><strong>最小写入单位：</strong>Flash的最小写入单位是页。</li>
+</ul>
+<h3 id="4-如何用中断函数返回一个值"><a href="#4-如何用中断函数返回一个值" class="headerlink" title="4.如何用中断函数返回一个值"></a>4.如何用中断函数返回一个值</h3><p>中断处理任务大多不需要返回值，若需要中断服务历程（ISR）需要返回某种结果，有以下方式：</p>
+<ol>
+<li><p><strong>使用全局变量</strong></p>
+<p>最常见的方式是使用全局变量存储中断服务例程中的计算结果。在ISR中更新此全局变量，主程序可以在中断处理后读取这个值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">volatile</span> <span class="type">int</span> g_interruptRusult; <span class="comment">// 声明一个全局变量</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> _attribute_((interrupt)) TmpISR(<span class="type">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 执行中断处理</span></span><br><span class="line">    g_interruptRusult = <span class="number">777</span>; <span class="comment">// 中断服务例程中设置值</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (中断发生) &#123;</span><br><span class="line">            <span class="type">int</span> result = g_interruptRusult;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, result);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用中断控制寄存器</strong></p>
+<p>在某些高级系统中，可能会使用中断控制寄存器来传递信息或状态，但这种方式依赖于具体的硬件平台和中断控制器。</p>
+</li>
+</ol>
+<h3 id="5-中断要传入什么参数？中断可以有返回值吗？"><a href="#5-中断要传入什么参数？中断可以有返回值吗？" class="headerlink" title="5.中断要传入什么参数？中断可以有返回值吗？"></a>5.中断要传入什么参数？中断可以有返回值吗？</h3><ol>
+<li><p><strong>中断处理函数的参数</strong></p>
+<p>一般情况下，标准的中断处理函数不接收任何参数。这是因为中断是由硬件触发的，硬件没有办法传递复杂的数据结构或参数给中断处理程序。</p>
+</li>
+<li><p><strong>中断处理函数的返回值</strong></p>
+<p>标准的中断处理函数通常没有返回值。中断处理函数主要的任务是处理中断事件并恢复系统状态，因此不需要返回值来传递结果。</p>
+</li>
+</ol>
+<h3 id="6-什么是DMA"><a href="#6-什么是DMA" class="headerlink" title="6.什么是DMA"></a>6.什么是DMA</h3><p>DMA（Direct Memory Access，直接内存访问）是一种允许外设直接读写内存的技术，而无需通过CPU来处理数据。这种方式可以显著提高数据传输效率和系统性能，特别是在需要大量数据传输的应用中。</p>
+<p><strong>基本概念</strong> </p>
+<ol>
+<li><strong>DMA控制器</strong>：<ol>
+<li>DMA控制器是一个硬件模块，负责管理和协调内存与外设之间的数据传输。</li>
+<li>它通常有自己的地址寄存器和计数器，能够在没有CPU干预的情况下直接访问内存。</li>
+</ol>
+</li>
+<li><strong>传输过程</strong>：<ol>
+<li><strong>设置：</strong>在数据传输之前，CPU需要配置DMA控制器，包括设置源地址、目标地址、传输数据量等。</li>
+<li><strong>启动：</strong>配置完成后，CPU启动DMA传输过程。</li>
+<li><strong>传输：</strong>DMA控制器接管数据传输，直接将数据从源地址移动到目标地址。</li>
+<li><strong>完成：</strong>传输完成后，DMA控制器通常会生成一个中断信号，通知CPU数据传输已完成，CPU可以继续处理相关任务。</li>
+</ol>
+</li>
+</ol>
+<p><strong>DMA的工作原理</strong></p>
+<ul>
+<li>配置阶段：<ul>
+<li>CPU配置DMA控制器，指定源地址、目标地址、数据量等。</li>
+</ul>
+</li>
+<li>启动阶段：<ul>
+<li>CPU启动DMA传输，DMA控制器开始数据传输过程。</li>
+</ul>
+</li>
+<li>数据传输阶段：<ul>
+<li>DMA控制器直接在内存和外设之间传输数据，不涉及CPU。这样可以在传输数据的同时，让CPU执行其他任务，提高系统效率。</li>
+</ul>
+</li>
+<li>完成阶段：<ul>
+<li>DMA传输完成后，DMA控制器通常会发出一个中断信号，通知CPU数据传输已完成，CPU可以处理后续操作</li>
+</ul>
+</li>
+</ul>
+<p><strong>DMA的优点</strong></p>
+<ul>
+<li><strong>提高性能：</strong>减少了CPU在数据传输过程中的干预，使CPU可以专注于其他计算任务。</li>
+<li><strong>节省时间：</strong>数据传输可以在后台进行，而不需要等待CPU的参与。</li>
+<li><strong>减少延迟：</strong>数据可以快速从外设传输到内存，减少了数据处理的延迟。</li>
+</ul>
+<p><strong>DMA的应用场景</strong></p>
+<ul>
+<li><strong>大数据传输：</strong>如从硬盘到内存的数据传输，或在网络数据传输中。</li>
+<li><strong>实时数据处理：</strong>如音频、视频数据的采集和处理。</li>
+<li><strong>外设数据传输：</strong>如从传感器或其他外设读取数据到内存。</li>
+</ul>
+<p><strong>DMA传输模式</strong></p>
+<ul>
+<li><strong>内存到内存(Memory-to-Memory)：</strong>直接在内存区域之间传输数据。</li>
+<li><strong>内存到外设(Memory-to-Peripheral)：</strong>将数据从内存传输到外设。</li>
+<li><strong>外设到内存(Peripheral-to-Memory：</strong>从外设传输数据到内存。</li>
+<li><strong>外设到外设(Peripheral-to-Peripheral)：</strong>在外设之间传输数据（相对少见）。</li>
+</ul>
+<h3 id="7-stm32如何进入中断"><a href="#7-stm32如何进入中断" class="headerlink" title="7.stm32如何进入中断"></a>7.stm32如何进入中断</h3><p><strong>配置中断源：</strong>设置要触发中断的外设（如定时器、USART等），并配置其中断相关参数。</p>
+<p><strong>定义中断服务程序(ISR)：</strong>编写一个函数（例如TIM2_IRQHandler），该函数用于处理中断事件。这是处理特定中断的代码部分。</p>
+<p><strong>使能中断：</strong>通过中断控制器（NVIC）使能中断请求。使用类似NVIC_EnableIRQ(TIM2_IRQn);的函数来启用相应的中断。</p>
+<p>当中断发生时，系统会自动跳转到ISR执行中断处理代码，完成后会返回到主程序继续执行。</p>
+<h3 id="8-寄存器长度变小，寻址范围会变小么"><a href="#8-寄存器长度变小，寻址范围会变小么" class="headerlink" title="8.寄存器长度变小，寻址范围会变小么"></a>8.寄存器长度变小，寻址范围会变小么</h3><p>寄存器长度变小会导致寻址范围变小。寄存器的长度直接影响了地址的表示范围，从而影响寻址能力。</p>
+<p><strong>寄存器长度：</strong>寄存器的长度决定了它能表示的最大数值。例如，一个8位寄存器可以表示0到255的数值，一个16位寄存器可以表示0到65535的数值。</p>
+<p><strong>寻址范围：</strong>在计算机系统中，地址的长度决定了可以寻址的内存空间。例如，如果地址寄存器是16位的，那么它可以表示的地址范围是0到65535（64KB）；如果是32位的，那么可以表示的地址范围是0到4294967295（4GB）。</p>
+<h3 id="9-如何在中断里面等待数据准备完成"><a href="#9-如何在中断里面等待数据准备完成" class="headerlink" title="9.如何在中断里面等待数据准备完成"></a>9.如何在中断里面等待数据准备完成</h3><p>在中断服务程序（ISR）中等待数据准备完成不是一种推荐的做法，因为它可能会导致系统的响应性降低。然而，在某些特定情况下，可以采取以下几种方法：</p>
+<ol>
+<li><p><strong>轮询(Polling):</strong></p>
+<ol>
+<li><p>在中断服务程序中，你可以使用一个循环不断检查数据是否准备好。如果数据已经准备好，处理数据；如果没有准备好，可以继续循环等待。</p>
+</li>
+<li><p>这种方法的缺点是它会占用CPU时间，降低系统的效率。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">IRQ_Handler</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span> (!data_ready_flag) &#123;</span><br><span class="line">        <span class="comment">// 等待数据准备</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 数据准备后，处理</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p><strong>使用标志位：</strong></p>
+<ol>
+<li><p>可以设置一个标志位在中断处理程序中，表示数据准备状态。然后在主程序中检查该标志位，如果标志位被设置，说明数据以准备。</p>
+</li>
+<li><p>这种方法避免了在中断处理程序中执行长时间的操作，从而保持系统的响应性。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">volatile</span> <span class="type">bool</span> g_dataReadyFlag = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">IRQ_Handler</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    g_dataReadyFlag = <span class="literal">true</span>; <span class="comment">// 数据准备好</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (g_dataReadyFlag) &#123;</span><br><span class="line">            g_dataReadyFlag = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p><strong>使用中断嵌套：</strong></p>
+<ol>
+<li>在某些系统中，可以允许中断嵌套，意味着在处理中断时可以响应其他中断。在数据准备好之前，可以响应其他优先级更高的中断，然后再回到原来的中断处理程序继续执行。</li>
+<li>这种方法需要适当配置中断优先级和确保中断处理程序的正确性。</li>
+</ol>
+</li>
+<li><p><strong>事件通知机制：</strong></p>
+<ul>
+<li><p>使用事件通知机制，如信号量或消息队列，将数据准备的事件通知到其他任务或线程。这种方法在RTOS（实时操作系统）中非常常见。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 需要使用RTOS支持的消息队列或信号量</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">IRQ_Handler</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    send_notification_to_task(); <span class="comment">// 通知任务数据已准备完毕</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<p><strong>总结：</strong>不推荐”在中断服务程序中直接等待数据准备完成”，因为它可能会降低系统的响应能力。更好的做法是利用中断处理程序的触发能力，通过标志位、事件通知机制等方式将数据准备的状态传递给主程序或任务，主程序或任务再根据需要处理数据。</p>
+<h3 id="10-什么是交叉编译"><a href="#10-什么是交叉编译" class="headerlink" title="10.什么是交叉编译"></a>10.什么是交叉编译</h3><p>交叉编译是指在一台主机上（称为主机）上使用特定的开发工具链，将代码编译生成可在不同硬件架构或操作系统上运行的目标文件。这个目标文件可以在与主机架构不同的目标系统上运行。</p>
+<h3 id="11-在中断中可使用printf-吗？有什么方法可以替代？"><a href="#11-在中断中可使用printf-吗？有什么方法可以替代？" class="headerlink" title="11.在中断中可使用printf()吗？有什么方法可以替代？"></a>11.在中断中可使用printf()吗？有什么方法可以替代？</h3><p>在中断服务函数(ISR)中，通常不建议使用printf()函数进行输出。这是因为printf()函数通常是一个相对较慢的操作，需要进行大量的字符格式化和输出操作，而中断服务函数需要尽可能地快速执行完成，以确保中断处理的实时性。</p>
+<p>在中断服务函数中使用printf()函数可能会带来以下问题：</p>
+<ol>
+<li><strong>执行时间延长：</strong>printf()函数调用涉及到大量的字符处理和IO操作，可能会导致中断服务函数的执行时间过长。这可能会破坏实时性要求，特别是在高速中断发生频率的场景下。</li>
+<li><strong>线程安全性：</strong>printf()函数可能使用全局资源，如缓冲区，可能会导致线程安全性问题，特别是在多中断嵌套的情况下。</li>
+<li><strong>可重入性问题：</strong>printf()函数通常不是可重入的，意味着在中断发生时，如果中断服务函数在printf()函数中被中断打断，可能会导致不可预期的结果。</li>
+</ol>
+<p>为了在中断服务函数中进行调试或输出信息，可以考虑以下替代方案：</p>
+<ol>
+<li><strong>使用调试工具或调试器：</strong>使用针对特定硬件和开发环境的调试工具或调试器，可以在中断服务函数中进行断点调试、查看变量值等操作。</li>
+<li><strong>使用日志功能：</strong>在中断服务函数中，可以将需要输出的信息记录到内存缓冲区或文件中，并在适当的时刻将其输出。这样可以避免在中断服务函数中延长执行时间，但仍可以捕获关键信息。</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Ryen</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2025/03/02/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-ARM/">http://example.com/2025/03/02/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-ARM/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span></span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E9%9A%8F%E7%AC%94/"># 随笔</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2025/02/25/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-Linux/">嵌入式八股_Linux</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Ryen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
