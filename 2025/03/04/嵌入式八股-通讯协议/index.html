@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ryen">
+
+
+
+
+
+<title>嵌入式八股_通讯协议 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ryen&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ryen&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">嵌入式八股_通讯协议</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Ryen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 4, 2025&nbsp;&nbsp;18:34:12</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="通讯协议相关面试题"><a href="#通讯协议相关面试题" class="headerlink" title="通讯协议相关面试题"></a>通讯协议相关面试题</h1><h3 id="1-串口通信的自定义协议，如何判断数据完整"><a href="#1-串口通信的自定义协议，如何判断数据完整" class="headerlink" title="1.串口通信的自定义协议，如何判断数据完整"></a>1.串口通信的自定义协议，如何判断数据完整</h3><ol>
+<li><strong>起始标志和结束标志：</strong>可以在通信协议中定义特定的起始标志和结束标志，例如一个字节的特殊字符（如0xAA）作为起始标志，另一个特殊字符作为结束标志。接收端可以通过检测起始标志和结束标志来确定数据的开始和结束。</li>
+<li><strong>数据长度字段：</strong>协议可以包含一个字段来指示数据的长度，这样接收端就可以知道何时接收到了完整的数据。例如，协议的第一个字节可以指示后续数据的长度，或者使用固定长度的数据包。</li>
+<li><strong>校验和或CRC校验：</strong>在数据包的末尾可以添加一个校验和或CRC校验字段，用于验证数据的完整性。接收端可以对接收到的数据进行校验，并且只有当校验通过时才认为数据完整。</li>
+<li><strong>超时机制：</strong>如果在一定时间内未接收到完整的数据包，可以认为数据不完整或者丢失。在这种情况下，可以启用超时机制，当超过一定时间后，丢弃当前接收的数据并重新开始接收。</li>
+<li><strong>重传机制：</strong>如果在校验过程中发现数据错误或者丢失，可以通过发送方和接收方之间的协商来实现数据的重传，以确保数据的完整性。</li>
+</ol>
+<h3 id="2-SPI和I2C寻址方式的区别"><a href="#2-SPI和I2C寻址方式的区别" class="headerlink" title="2.SPI和I2C寻址方式的区别"></a>2.SPI和I2C寻址方式的区别</h3><p><strong>SPI的寻址方式：</strong></p>
+<ul>
+<li>片选线：SPI使用片选线（CS&#x2F;SS）来选择与主设备通信的从设备。每个从设备都有一个唯一的片选线，通过使能相应的片选线，主设备与特定的从设备进行通信。</li>
+</ul>
+<p><strong>I2C的寻址方式：</strong></p>
+<ul>
+<li>7位或10位地址：I2C使用7位或10位的设备地址来选择与主设备通信的从设备。通常使用7位地址模式，但可以通过扩展以支持10位地址模式。</li>
+</ul>
+<h3 id="3-I2C设备的地址有多少位"><a href="#3-I2C设备的地址有多少位" class="headerlink" title="3.I2C设备的地址有多少位"></a>3.I2C设备的地址有多少位</h3><p>在I2C中，设备地址的位数可以是7位或10位，取决于使用的I2C协议版本和设备的支持情况。</p>
+<h3 id="4-描述一下I2C的读时序"><a href="#4-描述一下I2C的读时序" class="headerlink" title="4.描述一下I2C的读时序"></a>4.描述一下I2C的读时序</h3><ol>
+<li><strong>开始条件(Start Condition):</strong><ul>
+<li>主设备拉低SDA线，然后拉低SCL线，形成低电平脉冲，表示启动I2C通信。</li>
+</ul>
+</li>
+<li><strong>发送设备地址和读命令：</strong><ul>
+<li>主设备发送从设备的地址（包括写入位）到总线上，并等待从设备的确认信号。</li>
+<li>主设备发送读取命令（R&#x2F;W&#x3D;1）到总线上。</li>
+</ul>
+</li>
+<li><strong>从设备地址确认：</strong><ul>
+<li>从设备接收到地址后，发送应答信号（ACK），表示从设备已准备好进行读取操作。</li>
+</ul>
+</li>
+<li><strong>从设备发送数据：</strong><ul>
+<li>主设备接收从设备发送的数据，并发送应答（ACK）或非应答（NACK）信号，以指示是否继续接收数据。</li>
+<li>如果是最后一个要接收的字节，主设备会发送非应答（NACK）信号，然后跳到“结束条件”。</li>
+</ul>
+</li>
+<li><strong>重复数据接收（可选）：</strong><ul>
+<li>如果需要连续读取数据，主设备可以继续发送应答（ACK）信号，使得从设备继续发送下一个数据字节。</li>
+</ul>
+</li>
+<li><strong>结束条件(Stop Condition):</strong><ul>
+<li>主设备发送停止条件，即将SCL保持高电平时拉高SDA，形成高电平脉冲，表示通信结束。</li>
+</ul>
+</li>
+</ol>
+<p>需要注意的是，在I2C通信过程中，时钟由主设备控制，并且数据的传输是在时钟的上升沿和下降沿进行的。同时，从设备在接收数据后需要发送应答或非应答信号，以便主设备知道是否继续传输数据。这些步骤构成了标准的I2C读取时序。</p>
+<h3 id="5-I2C的特点？速度？硬件软件I2C有什么异同？"><a href="#5-I2C的特点？速度？硬件软件I2C有什么异同？" class="headerlink" title="5.I2C的特点？速度？硬件软件I2C有什么异同？"></a>5.I2C的特点？速度？硬件软件I2C有什么异同？</h3><p><strong>特点：</strong></p>
+<ol>
+<li><strong>双线制：</strong>I2C使用两条线（串行数据线SDA和串行时钟线SCL）进行通信，由于只需要两根线，因此可以节省系统的引脚资源。</li>
+<li><strong>主从结构：</strong>I2C通信中有一个主设备（Master）和一个或多个从设备（Slave）。主设备负责发起通信和控制总线的访问权限。</li>
+<li><strong>多点拓扑：</strong>通过地址区分不同的从设备，多个从设备可以在同一总线上进行通信，从而实现多点连接。</li>
+<li><strong>硬件应答：</strong>每个I2C设备在接收到自己的地址或数据后，都会发送一个应答位以告知主设备数据传输是否成功。</li>
+</ol>
+<p><strong>速度：</strong></p>
+<ul>
+<li>I2C的速度取决于时钟频率。标准模式下，I2C的最高时钟频率为100kHz，快速模式下为400kHz，高速模式可以达到1MHz。除此之外，还有更高的速度模式，如高速模式Plus（3.4MHz）和超高速模式（5MHz或更高）。实际可达的速度也受到硬件设备的限制。</li>
+</ul>
+<p><strong>硬件与软件I2C的异同：</strong></p>
+<ul>
+<li>硬件I2C是通过芯片内部的硬件电路实现的，通常由专用的硬件外设控制器负责I2C的通信。硬件I2C可以提供更高的速度和更可靠的数据传输，但配置和使用相对复杂。</li>
+<li>软件I2C是通过软件来模拟实现的，通常使用通用IO口进行位操作来实现I2C通信。软件I2C可以在没有专用硬件支持的情况下运行，但由于依赖于处理器的运算速度和任务调度等因素，速度和稳定性可能较差。</li>
+</ul>
+<p>在选择使用硬件还是软件I2C时，需要考虑实际的应用需求和硬件资源限制。硬件I2C适合高速和稳定的通信，而软件I2C则适合简单的通信和资源有限的情况。</p>
+<h3 id="6-SPI有几种模式"><a href="#6-SPI有几种模式" class="headerlink" title="6.SPI有几种模式"></a>6.SPI有几种模式</h3><p>SPI(Serial Peripheral Interface)有四种常见的模式，也称为SPI模式。这些模式定义了 <strong>时钟极性（CPOL）</strong>和<strong>时钟相位（CPHA）</strong>，对数据采样和传输的顺序进行了规定。以下是这四种SPI模式的描述：</p>
+<ol>
+<li><strong>Mode0（CPOL&#x3D;0，CPHA&#x3D;0）：</strong>时钟极性为低电平（空闲状态为低电平），时钟相位为上升沿采样。数据在时钟的下降沿之前被采样，然后在时钟的下降沿之后传输。</li>
+<li><strong>Mode1（CPOL&#x3D;0，CPHA&#x3D;1）：</strong>时钟极性为低电平（空闲状态为低电平），时钟相位为下降沿采样。数据在时钟的上升沿之前被采样，然后在时钟的上升沿之后传输。</li>
+<li><strong>Mode2（CPOL&#x3D;1，CPHA&#x3D;0）：</strong>时钟极性为高电平（空闲状态为高电平），时钟相位为上升沿采样。数据在时钟的下降沿之前被采样，然后在时钟的下降沿之后传输。</li>
+<li><strong>Mode3（CPOL&#x3D;1，CPHA&#x3D;1）：</strong>时钟极性为高电平（空闲状态为高电平），时钟相位为下降沿采样。数据在时钟的上升沿之前被采样，然后在时钟的上升沿之后传输。</li>
+</ol>
+<h3 id="7-MQTT协议的原理"><a href="#7-MQTT协议的原理" class="headerlink" title="7.MQTT协议的原理"></a>7.MQTT协议的原理</h3><p>MQTT(Message Queuing Telemetry Transport)是一种轻量级的、基于发布&#x2F;订阅模式的通信协议，常用于物联网设备之间的通信。其原理如下：</p>
+<ol>
+<li><strong>发布&#x2F;订阅模式：</strong><ul>
+<li>MQTT使用发布&#x2F;订阅模式进行通信。在这种模式下，消息的发送者称为发布者（Publisher），消息的接收者称为订阅者（Subscriber）。发布者将消息发布到一个特定的主题（Topic），而订阅者则订阅感兴趣的主题，以接收相关消息。</li>
+</ul>
+</li>
+<li><strong>客户端与服务器：</strong><ul>
+<li>MQTT包括两种主要类型的参与者：客户端和服务器。客户端可以是发布者、订阅者或同时兼具两者身份。服务器则是消息的中转站，负责转发消息给订阅了相关主题的客户端。</li>
+</ul>
+</li>
+<li><strong>主题(Topic):</strong><ul>
+<li>主题是MQTT中消息发布和订阅的基本单位。每条消息都发布到一个特定的主题上，订阅者可以选择订阅一个或多个感兴趣的主题，以接收相关消息。主题可以是任何字符串，通常采用层级结构来组织，例如：“sensor&#x2F;temperature”。</li>
+</ul>
+</li>
+<li><strong>连接与会话：</strong><ul>
+<li>MQTT客户端需要与服务器建立连接，连接建立后，客户端可以发布消息、订阅主题或取消订阅。服务器维护了客户端的连接状态和订阅信息，以确保消息的正确传递。客户端可以选择保持持久化连接，以便在断开连接后能够保留其订阅状态和消息接收位置。</li>
+</ul>
+</li>
+<li><strong>QoS (Quality of Service):</strong><ul>
+<li>MQTT定义了三个不同的QoS等级：0、1和2。QoS等级决定了消息的传递保证程度和传输开销。较高的QoS等级提供了更可靠的消息传递保证，但可能会增加网络开销。</li>
+</ul>
+</li>
+<li><strong>消息传输：</strong><ul>
+<li>当发布者发布消息时，消息被发送到服务器，并根据订阅者的订阅信息转发给相应的订阅者。消息可以是任意格式的数据，例如传感器读数、控制命令等。订阅者收到消息后，可以根据需要进行处理。</li>
+</ul>
+</li>
+</ol>
+<h3 id="8-UART的数据格式？如何保证在侦听UART时不会一直判断接收0？"><a href="#8-UART的数据格式？如何保证在侦听UART时不会一直判断接收0？" class="headerlink" title="8.UART的数据格式？如何保证在侦听UART时不会一直判断接收0？"></a>8.UART的数据格式？如何保证在侦听UART时不会一直判断接收0？</h3><p>UART数据帧的基本格式如下：</p>
+<ul>
+<li><strong>起始位（Start Bit）：</strong>一个低电平信号表示数据传输的开始。</li>
+<li><strong>数据位（Data Bits）：</strong>通常为8位，即每个数据帧包含8位的数据。</li>
+<li><strong>校验位（Parity Bit）（可选）：</strong>用于检测数据传输过程中的错误。可以是奇校验、偶校验或无校验。</li>
+<li><strong>停止位（Stop Bit）：</strong>一个或多个高电平信号表示数据传输的结束。</li>
+</ul>
+<p>为了避免在侦听UART时一直判断接收到0，可以通过以下方法来确保数据的有效性：</p>
+<ol>
+<li><strong>超时机制：</strong>设置一个超时计时器，在接收数据时启动计时器。如果在一定时间内未接收到有效数据，则视为数据传输完成，可以进行后续处理。</li>
+<li><strong>校验机制：</strong>在传输数据时使用校验位，例如奇偶校验，以检测数据传输过程中的错误。如果接收到的数据校验错误，则可以丢弃该数据。</li>
+<li><strong>错误检测：</strong>检测传输过程中的错误，例如帧错误（Frame Error）或奇偶校验错误（Parity Error），以便及时发现并处理错误数据。</li>
+<li><strong>使用特定的数据协议：</strong>在通信双方约定一种特定的数据协议，例如在数据帧中添加起始标志和结束标志，并确保在传输过程中正确识别这些标志。</li>
+</ol>
+<h3 id="9-RS232和RS485的区别"><a href="#9-RS232和RS485的区别" class="headerlink" title="9.RS232和RS485的区别"></a>9.RS232和RS485的区别</h3><p><strong>RS232的特点：</strong></p>
+<ol>
+<li><strong>点对点通信：</strong>RS232通信是一对一的通信，即一台计算机与一台外部设备之间的直接连接。</li>
+<li><strong>电平：</strong>RS232使用正电平来表示数据的逻辑0和逻辑1。通常，正电平为-5V至-15V表示逻辑0，负电平为+5V至+15V表示逻辑1。</li>
+<li><strong>信号传输距离：</strong>RS232的信号传输距离通常较短，一般为50英尺（约15米）左右。</li>
+<li><strong>信号线数量：</strong>RS232需要使用至少3根信号线进行通信，包括发送线（TX）、接收线(RX)和地线。</li>
+</ol>
+<p><strong>RS485的特点：</strong></p>
+<ol>
+<li><strong>多点通信：</strong>RS485允许多个设备通过相同的总线进行通信，因此可以实现一主多从的通信结构。</li>
+<li><strong>差分信号：</strong>RS485使用差分信号传输，即通过两根信号线之间的电压差来表示逻辑0和逻辑1。通常，正电平为-2V至-6V表示逻辑0，电平为+2V至+6V表示逻辑1。</li>
+<li><strong>信号传输距离：</strong>RS485的信号传输距离可以达到几千米，远远超过RS232。</li>
+<li><strong>信号线数量：</strong>RS485至少需要两根信号线进行差分传输（A线和B线），同时还需要一个公共地线。</li>
+</ol>
+<p><strong>总结：</strong>RS232和RS485在以下方面有不同：</p>
+<ul>
+<li><strong>通信方式：</strong>RS232是点对点通信，RS485是多点通信。</li>
+<li><strong>电平表示：</strong>RS232使用正负电平，RS485使用差分信号。</li>
+<li><strong>信号传输距离：</strong>RS232适用于较短距离传输，RS485适用于较长距离传输。</li>
+<li><strong>信号线数量：</strong>RS232需要至少3根信号线，而RS485只需要至少2根信号线。</li>
+</ul>
+<h3 id="10-未接收到串口发送信息，如何查错"><a href="#10-未接收到串口发送信息，如何查错" class="headerlink" title="10.未接收到串口发送信息，如何查错"></a>10.未接收到串口发送信息，如何查错</h3><ol>
+<li><strong>确认硬件连接：</strong><ul>
+<li>确保串口线正确连接到设备的串口接口，并确保连接稳固。检查串口线是否损坏或连接不良。</li>
+</ul>
+</li>
+<li><strong>确认串口设置：</strong><ul>
+<li>检查串口的波特率、数据位、校验位和停止位等设置是否与发送端设置一致。确保发送端和接收端的串口设置匹配。</li>
+</ul>
+</li>
+<li><strong>检查串口状态：</strong><ul>
+<li>使用适当的串口调试工具或命令行工具（如minicom、PuTTY等）检查串口状态。确认串口是否已打开，并检查是否存在数据流。</li>
+</ul>
+</li>
+<li><strong>检查串口驱动程序：</strong><ul>
+<li>确保操作系统正确加载了串口驱动程序，并且驱动程序正常运行。检查系统日志以查看是否有与串口相关的错误或警告信息。</li>
+</ul>
+</li>
+<li><strong>使用示波器检查信号：</strong><ul>
+<li>使用示波器检查串口发送和接收线上的信号波形，确认是否存在发送端发送的数据信号，并检查接收端是否能够正确接收到数据信号。</li>
+</ul>
+</li>
+<li><strong>检查串口缓冲区：</strong><ul>
+<li>检查串口接收缓冲区是否已满，导致未能及时接收到数据。可以通过查询串口接收缓冲区状态或清空缓冲区来解决该问题。</li>
+</ul>
+</li>
+<li><strong>排除硬件故障：</strong><ul>
+<li>如果经过以上步骤检查仍未解决问题，可能存在硬件故障。可以尝试更换串口线、串口适配器或更换串口设备进行测试，以确定是否是硬件故障导致的问题。</li>
+</ul>
+</li>
+<li><strong>检查发送端设置：</strong><ul>
+<li>最后，确保发送端设备正常工作并发送数据。检查发送端的串口设置、数据发送逻辑和硬件连接，确保发送端正常发送数据。</li>
+</ul>
+</li>
+</ol>
+<h3 id="11-TCP协议的三次握手和四次挥手"><a href="#11-TCP协议的三次握手和四次挥手" class="headerlink" title="11.TCP协议的三次握手和四次挥手"></a>11.TCP协议的三次握手和四次挥手</h3><p><strong>三次握手(Three-Way Handshake):</strong> </p>
+<ol>
+<li><strong>客户端发送请求：</strong><ul>
+<li>客户端向服务器发送连接请求报文（SYN），并指定自己的初始序列号（Seq&#x3D;X）。</li>
+</ul>
+</li>
+<li><strong>服务器确认请求：</strong><ul>
+<li>服务器收到客户端的连接请求后，如果同意建立连接，则会发送一个确认报文（ACK），同时也会指定自己的初始序列号（Seq&#x3D;Y），并且在确认报文的标志位中设置SYN标志位，表示同意建立连接。</li>
+</ul>
+</li>
+<li><strong>客户端确认连接：</strong><ul>
+<li>客户端收到服务器的确认后，会发送一个确认报文（ACK），确认收到服务器的确认，同时在确认报文的标志位中设置ACK标志位，表示连接建立成功。</li>
+</ul>
+</li>
+</ol>
+<p>这样就完成了三次握手，建立了TCP连接，此后客户端和服务器之间就可以开始传输数据。</p>
+<p><strong>四次挥手(Four-Way Handshake):</strong></p>
+<ol>
+<li><strong>客户端发起断开：</strong><ul>
+<li>客户端发送一个带有FIN标志位的报文，表示数据传输结束，但仍可以接收数据。</li>
+</ul>
+</li>
+<li><strong>服务器确认断开：</strong><ul>
+<li>服务器收到客户端的FIN后，会发送一个ACK报文，确认收到客户端的断开请求。</li>
+</ul>
+</li>
+<li><strong>服务器发起断开：</strong><ul>
+<li>服务器发送一个带有FIN标志位的报文，表示服务器也准备好断开连接。</li>
+</ul>
+</li>
+<li><strong>客户端确认断开：</strong><ul>
+<li>客户端收到服务器的FIN后，会发送一个ACK报文，确认收到服务器的断开请求。</li>
+</ul>
+</li>
+</ol>
+<p>完成以上四次挥手后，TCP连接就被正常关闭了。这个过程中，客户端和服务器都可以发送最后的确认报文，确保双方都知道连接已经断开。</p>
+<h3 id="12-串口通信是否为FIFO"><a href="#12-串口通信是否为FIFO" class="headerlink" title="12.串口通信是否为FIFO"></a>12.串口通信是否为FIFO</h3><p>在串口通信中，FIFO（First In,First Out)常常用于串口控制器内部的数据缓冲区。这些FIFO缓冲区用于临时存储接收到或待发送的数据，以平滑数据的传输过程。</p>
+<p>串口通信中的FIFO主要有两种：</p>
+<ol>
+<li><strong>接收FIFO：</strong>用于临时存储接收到的数据字节，以防止数据丢失。当接收到的数据字节超出处理能力或处理速度时，这些数据会暂时存储在接收FIFO中，直到处理器能够处理这些数据。这样可以避免数据丢失，并允许处理器以自己的速度来读取数据。</li>
+<li><strong>发送FIFO：</strong>用于临时存储待发送的数据字节，以平滑数据的发送过程。当发送数据的速率高于串口传输的速率时，发送FIFO可以暂时存储待发送的数据，直到串口控制器准备好发送下一个数据字节。这样可以避免数据溢出，并允许发送器以自己的速度来发送数据。</li>
+</ol>
+<p>使用FIFO可以提高串口通信的效率和可靠性，特别是在高速通信或数据处理较慢的情况下。通过FIFO，串口控制器能够更好地管理数据流，确保数据的顺利传输。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Ryen</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2025/03/04/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/">http://example.com/2025/03/04/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span></span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E9%9A%8F%E7%AC%94/"># 随笔</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/03/04/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">嵌入式八股_数据结构</a>
+            
+            
+            <a class="next" rel="next" href="/2025/03/02/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-ARM/">嵌入式八股_ARM</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Ryen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

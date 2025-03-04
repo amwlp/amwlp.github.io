@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Ryen">
+
+
+
+
+
+<title>嵌入式八股_数据结构 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ryen&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ryen&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">嵌入式八股_数据结构</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Ryen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 4, 2025&nbsp;&nbsp;23:15:53</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="数据结构相关面试题"><a href="#数据结构相关面试题" class="headerlink" title="数据结构相关面试题"></a>数据结构相关面试题</h1><h3 id="1-堆和栈的区别"><a href="#1-堆和栈的区别" class="headerlink" title="1.堆和栈的区别"></a>1.堆和栈的区别</h3><ol>
+<li><strong>分配方式：</strong><ul>
+<li><strong>栈（Stack）：</strong>栈是一种线性的数据结构，它采用先进后出（LIFO）的方式进行存储和访问。栈中的内存分配由编译器自动管理，通常用于存储函数的局部变量、函数参数以及函数调用的上下文信息。栈上的内存分配和释放是自动的，不需要手动管理。</li>
+<li><strong>堆（Heap）：</strong>堆是一种动态分配的内存区域，它的大小和生命周期可以在运行时动态调整。堆上的内存分配和释放通常由程序员手动管理，例如通过malloc、free(C)或 new、delete(C++)等函数进行操作。</li>
+</ul>
+</li>
+<li><strong>分配速度：</strong><ul>
+<li><strong>栈：</strong>栈上的内存分配和释放通常比堆上的操作更快，因为栈上的内存分配和释放是由编译器自动管理的，无需复杂的内存分配算法。</li>
+<li><strong>堆：</strong>堆上的内存分配和释放可能会比较慢，因为需要使用一些复杂的数据结构来管理动态分配的内存，例如链表或二叉堆。</li>
+</ul>
+</li>
+<li><strong>分配大小：</strong><ul>
+<li><strong>栈：</strong>栈上的内存空间通常是有限的，并且在编译时就确定了大小。</li>
+<li><strong>堆：</strong>堆上的内存空间通常比较大，并且可以在运行时动态调整大小，取决于系统的可用内存大小。</li>
+</ul>
+</li>
+<li><strong>生命周期：</strong><ul>
+<li><strong>栈：</strong>栈上的内存分配和释放是与函数调用的生命周期相关联的，当函数执行完毕时，函数的局部变量将会被自动释放。</li>
+<li><strong>堆：</strong>堆上的内存分配和释放的生命周期由程序员手动控制，需要显式地调用分配和释放函数，如果程序员不释放堆上的内存，可能会导致内存泄漏。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-链表和顺序表的区别"><a href="#2-链表和顺序表的区别" class="headerlink" title="2.链表和顺序表的区别"></a>2.链表和顺序表的区别</h3><ol>
+<li><strong>访问速度：</strong><ul>
+<li>链表的访问速度较慢，需要从头节点开始按顺序遍历节点，直到找到目标节点。</li>
+<li>顺序表支持通过索引直接访问元素，因此随机访问速度较快。</li>
+</ul>
+</li>
+<li><strong>增删改查操作：</strong><ul>
+<li>链表对于插入和删除操作较为高效，只需要修改节点的链接，而不需要移动其他节点。</li>
+<li>顺序表的插入和删除操作可能需要移动其他元素，特别是在中间位置进行插入和删除，可能导致较大的时间开销。</li>
+<li><strong>修改操作方面，对于已知位置的修改，顺序表更为高效。</strong></li>
+</ul>
+</li>
+<li><strong>地址连续性：</strong><ul>
+<li>链表中的节点可以存储在内存的任意位置，节点之间的地址不一定是连续的。</li>
+<li>顺序表中的元素在内存中是连续存储的，其地址是连续的。</li>
+</ul>
+</li>
+<li><strong>使用场景：</strong><ul>
+<li><strong>链表适用于：</strong><ol>
+<li>需要动态管理大小的数据结构，因为链表可以在运行时动态添加和删除节点。</li>
+<li>插入和删除操作频繁的情况，因为链表具有较好的插入和删除性能。</li>
+<li>不需要随机访问元素的场景。</li>
+</ol>
+</li>
+<li><strong>顺序表适用于：</strong><ol>
+<li>对于已知元素数量且大小不会频繁变化的场景。</li>
+<li>需要频繁随机访问元素的情况。</li>
+<li>对内存占用有限制的场景，因为顺序表的存储是紧凑的。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-怎么确定该用链表还是数组"><a href="#3-怎么确定该用链表还是数组" class="headerlink" title="3.怎么确定该用链表还是数组"></a>3.怎么确定该用链表还是数组</h3><p><strong>使用链表的情况：</strong></p>
+<ol>
+<li><strong>需要频繁进行插入和删除操作：</strong>链表在插入和删除操作方面具有较好的性能，因为只需要修改节点的链接，不需要移动其他节点。</li>
+<li><strong>数据集合大小需要动态调整：</strong>链表的大小可以在运行时动态改变，可以方便地进行扩展或缩小。</li>
+<li><strong>内存空间不连续或稀疏：</strong>如果存储的数据在内存中的地址不连续或者是分散的，链表更适合存储。</li>
+<li><strong>需要对数据集合进行频繁的重新排序或重组：</strong>链表的插入和删除操作相较数组更为高效方便。</li>
+</ol>
+<p><strong>使用数组（顺序表）的情况：</strong></p>
+<ol>
+<li><strong>需要频繁进行随机访问：</strong>数组通过索引直接访问元素，随机访问非常高效。</li>
+<li><strong>已知数据集合大小：</strong>如果数据集合的大小在运行时是已知的，并且不需要频繁进行添加或删除操作，使用数组更为适合。</li>
+<li><strong>内存连续：</strong>如果存储的数据在内存中需要保持连续存储以便于访问和计算，数组是更好的选择。</li>
+<li><strong>数据占用内存较小：</strong>链表的存储需要一定的额外存储空间来存储指针或引用，而数组在存储上更加紧凑。</li>
+</ol>
+<h3 id="4-什么是队列，队列应用在什么场景"><a href="#4-什么是队列，队列应用在什么场景" class="headerlink" title="4.什么是队列，队列应用在什么场景"></a>4.什么是队列，队列应用在什么场景</h3><p>队列（Queue）是一种常见的线性数据结构，它按照先进先出（FIFO）的原则管理数据。队列在数据的插入和删除操作上有严格的限制，只能在队列的一端插入元素，而在另一端删除元素。插入操作在队列的末尾进行，删除操作则在队列的头部进行。</p>
+<p><strong>队列的主要特点：</strong></p>
+<ol>
+<li><strong>先进先出(FIFO)：</strong><ul>
+<li>最先插入队列的元素最先被删除，后插入的元素在删除之后才能被访问。</li>
+</ul>
+</li>
+<li>队列操作：<ol>
+<li><strong>入队(Enqueue)：</strong>将元素插入到队列的末尾。</li>
+<li><strong>出队(Dequeue)：</strong>从队列的头部删除并返回元素。</li>
+<li><strong>队首(Front)：</strong>获取队列头部的元素，但不进行删除操作。</li>
+<li><strong>队尾(Rear&#x2F;Back)：</strong>获取队列尾部的元素。</li>
+</ol>
+</li>
+<li><strong>操作限制：</strong><ul>
+<li>队列的插入操作（入队）只能在队列的末尾进行，删除操作（出队）只能在队列的头部进行。</li>
+</ul>
+</li>
+</ol>
+<p><strong>队列常见的应用场景：</strong></p>
+<ol>
+<li><strong>系统任务调度：</strong>操作系统可以使用队列来管理任务的执行顺序，保证任务按照先来先执行的顺序进行。</li>
+<li><strong>广度优先搜索(BFS)：</strong>在图的遍历中，使用队列来管理待访问的节点，保证按照层次顺序进行遍历。</li>
+<li><strong>消息传递和处理：</strong>队列可以用于传递和处理消息或事件，确保消息按照顺序被处理。</li>
+<li><strong>线程池和任务队列：</strong>在并发编程中，可以使用队列来实现任务的排队和调度，确保按照先后顺序执行任务。</li>
+<li><strong>缓冲区管理：</strong>队列可以用于管理缓冲区，保证数据按照先后顺序进行处理。</li>
+<li><strong>基于事件驱动的系统：</strong>队列可用于处理和调度事件，确保事件按照顺序被处理。</li>
+</ol>
+<h3 id="5-回文字符串的判断"><a href="#5-回文字符串的判断" class="headerlink" title="5.回文字符串的判断"></a>5.回文字符串的判断</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-冒泡排序"><a href="#6-冒泡排序" class="headerlink" title="6.冒泡排序"></a>6.冒泡排序</h3><p>冒泡排序（Bubble Sort）是一种简单但效率较低的排序算法，它通过相邻元素之间的比较和交换来逐步将最大（或最小）的元素移到末尾。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="7-快速排序"><a href="#7-快速排序" class="headerlink" title="7.快速排序"></a>7.快速排序</h3><p>快速排序的思路是通过分治的策略来进行排序。首先从数组中选择一个元素作为基准值（通常选择最后一个元素） ，然后将数组中的其他元素按照与基准值的大小进行划分，小于基准值的元素放在基准值的左边，大于基准值的元素放在基准值的右边。这样，基准值就处于正确的排序位置。接下来，分别对左侧和右侧的子数组进行快速排序，直到每个子数组只有一个元素为止。最后，合并所有子数组，得到完全排序的结果。</p>
+<p>快速排序的核心在于划分过程，可以使用双指针的方法进行划分。其中，一个指针从数组的起始位置开始，另一个指针从数组的末尾位置开始，根据与基准值的比较结果，交换元一素的位置，直到两个指针相遇。这样可以保证划分后，基准值左边的元素都小于基准值，右边的元素都大于基准值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="8-归并排序"><a href="#8-归并排序" class="headerlink" title="8.归并排序"></a>8.归并排序</h3><p>归并排序的思路是将数组分为两个子数组，分别对这两个子数组进行归并排序，然后将排好序的子数组合并成一个整体有序的数组。递归地将数组一分为二，直到每个子数组只有一个元素或为空。接着，使用一个辅助数组将两个有序的子数组合并成一个有序的数组。归并排序的核心在于合并过程，可以使用双指针的方法进行合并。其中，一个指针指向左侧子数组的起始位置，另一个指针指向右侧子数组的起始位置，通过比较两个指针指向的元素，选择较小的元素放入辅助数组中，然后相应地更新指针。最后，将剩余未放入辅助数组的元素依次放入，完成合并。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9-插入排序"><a href="#9-插入排序" class="headerlink" title="9.插入排序"></a>9.插入排序</h3><p>插入排序将数组分为已排序区域和未排序区域。初始时，已排序区域只有一个元素。然后，从未排序区域逐个取出元素，并插入到已排序区域的正确位置。具体而言，对于未排序区域的每个元素，将其与已排序区域中的元素从右向左逐个比较，找到合适的位置，使得已排序区域在插入该元素后仍保持有序。通过不断将未排序区域的元素插入到已排序区域，最终得到完全有序的数组。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="10-选择排序"><a href="#10-选择排序" class="headerlink" title="10.选择排序"></a>10.选择排序</h3><p>选择排序每次从未排序区域选择最小的元素，并将其放置在已排序区域的末尾。具体而言，通过不断遍历未排序区域，找到最小的元素，然后将其与未排序区域的第一个元素进行交换。这样，已排序区域不断扩大，最终得到完全有序的数组。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="11-堆排序"><a href="#11-堆排序" class="headerlink" title="11.堆排序"></a>11.堆排序</h3><p>堆排序通过构建最大堆来实现排序。首先，通过堆化构建最大堆，即将给定数组重新排列成一个满足堆性质的完全二叉树。然后，将堆顶元素（最大值）与最后一个叶节点交换，将最大元素移动到数组的末尾。之后，通过减小堆的大小并对堆进行堆化的操作，将堆顶元素（当前最大值）移动到合适位置。重复这个过程，直到所有元素有序排列。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="12-希尔排序"><a href="#12-希尔排序" class="headerlink" title="12.希尔排序"></a>12.希尔排序</h3><p>希尔排序是插入排序的一种改进算法。它将数组分成多个子序列，并分别对每个子序列进行插入排序。初始时，子序列的间隔较大，然后逐步减小间隔，直到间隔为1，完成最后一次插入排序。希尔排序的核心思想是，通过提前将较远距离的元素进行比较和交换，可以更快地将小元素移到前面，大元素移到后面，从而减少插入排序的工作量。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Ryen</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://example.com/2025/03/04/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">http://example.com/2025/03/04/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span></span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E9%9A%8F%E7%AC%94/"># 随笔</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/03/04/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-Cpp/">嵌入式八股_C++</a>
+            
+            
+            <a class="next" rel="next" href="/2025/03/04/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%85%AB%E8%82%A1-%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AE/">嵌入式八股_通讯协议</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Ryen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
